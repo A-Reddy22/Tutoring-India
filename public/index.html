@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScholarTutors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #2980b9;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #27ae60;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #229954;
+        }
+
+        #subjectSelection, #testPrepSelection, #skillsSelection {
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #studentInfoForm {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: left;
+            width: 350px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #2980b9;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #2471a3;
+        }
+
+        #confirmationMessage {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        #forStudents, #forTutors, #aboutUs {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #2980b9;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            color: #34495e;
+        }
+
+        .highlight {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        #tocButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #tocButton div {
+            width: 35px;
+            height: 5px;
+            background-color: white;
+            margin: 6px 0;
+            border-radius: 2px;
+        }
+
+        #tocMenu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 10px;
+            background-color: white;
+            border: 1px solid #2980b9;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        #tocMenu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            border: none;
+            background-color: white;
+            color: #2980b9;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        #tocMenu button:hover {
+            background-color: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <button id="tocButton" onclick="toggleTocMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </button>
+    <div id="tocMenu">
+        <button onclick="showSection('signupSection')">Sign Up</button>
+        <button onclick="showSection('forStudents')">For Students</button>
+        <button onclick="showSection('forTutors')">For Tutors</button>
+        <button onclick="showSection('aboutUs')">About Us</button>
+    </div>
+
+    <div id="signupSection">
+        <h1>Welcome to ScholarTutors</h1>
+        <p>Experts that suit your needs.</p>
+        <div id="subjectSelection">
+            <h2>Select Subjects:</h2>
+            <select id="subjects" name="subjects">
+                <option value="None">None</option>
+                <option value="Math">Math</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="English">English</option>
+                <option value="Biology">Biology</option>
+                <option value="Economics">Economics</option>
+                <option value="Business Studies">Business Studies</option>
+                <option value="French">French</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div id="testPrepSelection">
+            <h2>Test Preparation:</h2>
+            <select id="testPrep" name="testPrep">
+                <option value="None">None</option>
+                <option value="SAT">SAT</option>
+                <option value="ACT">ACT</option>
+                <option value="NEET">NEET</option>
+                <option value="JEE">JEE</option>
+            </select>
+        </div>
+        <div id="skillsSelection">
+            <h2>Skills:</h2>
+            <select id="skills" name="skills">
+                <option value="None">None</option>
+                <option value="Personal Finance">Personal Finance</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Graphic Design">Graphic Design</option>
+                <option value="Digital Marketing">Digital Marketing</option>
+                <option value="Artificial Intelligence Applications">Artificial Intelligence Applications</option>
+                <option value="Video Filming & Editing">Video Filming & Editing</option>
+                <option value="Copywriting">Copywriting</option>
+                <option value="Sales">Sales</option>
+                <option value="Foreign Language">Foreign Language</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <button id="nextButton" onclick="showStudentInfoForm()">Next</button>
+        
+        <div id="studentInfoForm">
+            <h2>Student Information</h2>
+            <form id="studentFormContent">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" name="studentName" required><br>
+                <label for="studentEmail">Email:</label>
+                <input type="email" id="studentEmail" name="studentEmail" required><br>
+                <label for="studentNumber">Phone Number:</label>
+                <input type="tel" id="studentNumber" name="studentNumber" required><br>
+                <label for="syllabus">Syllabus:</label>
+                <select id="syllabus" name="syllabus">
+                    <option value="CBSE">CBSE</option>
+                    <option value="AP">AP</option>
+                    <option value="IB">IB</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="IGCSE">IGCSE</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <label for="gradeLevel">Grade Level:</label>
+                <select id="gradeLevel" name="gradeLevel" required>
+                    <option value="Kindergarten">Kindergarten</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="Other">Other</option>
+                </select><br>
+                <button type="submit">Submit</button>
+                <button type="button" onclick="goBack()">Back</button>
+            </form>
+        </div>
+
+        <div id="confirmationMessage">
+            <h2>Thank you for visiting ScholarTutors</h2>
+            <p>We will get in touch with you shortly!</p>
+        </div>
+    </div>
+
+    <div id="forStudents">
+        <h2>For Students</h2>
+        <p class="content highlight">Benefits for Students:</p>
+        <p class="content">- Access to Qualified Tutors: Connect with highly qualified tutors across various subjects.</p>
+        <p class="content">- Streamlined Communication: Direct and convenient communication with tutors.</p>
+        <p class="content">- Personalized Matching: Advanced AI algorithms ensure a perfect match between students and tutors.</p>
+        <p class="content">- Larger Pool of Tutors: Choose from a wide range of tutors, beyond those recommended by friends.</p>
+    </div>
+
+    <div id="forTutors">
+        <h2>For Tutors</h2>
+        <p class="content highlight">Benefits for Tutors:</p>
+        <p class="content">- Additional Income: Unlock the opportunity to earn more by reaching a broader student base.</p>
+        <p class="content">- Business Growth: Effortlessly grow your tutoring business without relying solely on word-of-mouth referrals.</p>
+        <p class="content">- Steady Student Flow: Our matching algorithm ensures a consistent flow of students, reducing the unpredictability of referrals.</p>
+
+        <h2>Unique Selling Proposition (USP):</h2>
+        <p class="content">Opportunities for Aspiring Tutors:</p>
+        <p class="content">We welcome non-professionals and individuals with limited teaching experience. Each candidate undergoes a thorough screening process, including tests to ensure quality teaching.</p>
+
+        <p class="content">Advanced AI Matching:</p>
+        <p class="content">Our AI algorithms go beyond simple search results. By asking specific questions, we understand your needs and match you with the perfect tutor. This personalized, one-on-one matching provides a more tailored and effective learning experience compared to other platforms.</p>
+    </div>
+
+    <div id="aboutUs">
+        <h2>About Us</h2>
+        <p class="content">"We provide a seamless and organized platform for private tutors and teaching academies to expand their reach and connect with a larger pool of students. Using AI algorithms, we match students with the right tutors, eliminating the hassle of word-of-mouth referrals. With our platform, teachers can manage their schedules, communicate with students, and grow their teaching business efficiently."</p>
+    </div>
+
+    <script>
+        function toggleTocMenu() {
+            const tocMenu = document.getElementById('tocMenu');
+            tocMenu.style.display = tocMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('div[id$="Section"], #forStudents, #forTutors, #aboutUs');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            toggleTocMenu();
+        }
+
+        function showStudentInfoForm() {
+            if (document.getElementById('subjects').value === 'None' &&
+                document.getElementById('testPrep').value === 'None' &&
+                document.getElementById('skills').value === 'None') {
+                alert("Please select at least one option from Subjects, Test Preparation, or Skills.");
+                return;
+            }
+            document.getElementById('subjectSelection').style.display = 'none';
+            document.getElementById('testPrepSelection').style.display = 'none';
+            document.getElementById('skillsSelection').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'none';
+            document.getElementById('studentInfoForm').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('subjectSelection').style.display = 'block';
+            document.getElementById('testPrepSelection').style.display = 'block';
+            document.getElementById('skillsSelection').style.display = 'block';
+            document.getElementById('nextButton').style.display = 'block';
+            document.getElementById('studentInfoForm').style.display = 'none';
+        }
+
+        function showConfirmationMessage() {
+            document.getElementById('studentInfoForm').style.display = 'none';
+            document.getElementById('confirmationMessage').style.display = 'block';
+        }
+
+        document.getElementById('studentFormContent').onsubmit = function(event) {
+            event.preventDefault();
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.getElementById('studentName').value,
+                    email: document.getElementById('studentEmail').value,
+                    phone: document.getElementById('studentNumber').value,
+                    syllabus: document.getElementById('syllabus').value,
+                    gradeLevel: document.getElementById('gradeLevel').value,
+                    subjects: document.getElementById('subjects').value,
+                    testPrep: document.getElementById('testPrep').value,
+                    skills: document.getElementById('skills').value
+                })
+            }).then(response => response.json())
+            .then(data => {
+                showConfirmationMessage();  // Show the confirmation message
+            }).catch(error => console.error('Error:', error));
+        };
+    </script>
+</body>
+</html>

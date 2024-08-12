@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Akshat",
+    "email": "akshar20054@gmail.com",
+    "phone": "9550550044",
+    "syllabus": "CBSE",
+    "gradeLevel": "Kindergarten",
+    "subjects": "Math",
+    "testPrep": ""
+  },
+  {
+    "name": "ishan",
+    "email": "ishan@gmail.com",
+    "phone": "7143292498",
+    "syllabus": "CBSE",
+    "gradeLevel": "Kindergarten",
+    "subjects": "Physics",
+    "testPrep": ""
+  }
+]
