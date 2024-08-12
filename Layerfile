@@ -1,0 +1,17 @@
+# Use a Node.js base image
+FROM node:14
+
+# Install dependencies
+RUN npm install
+
+# Set environment variables (if any)
+ENV NODE_ENV=production
+
+# Run build script (if applicable)
+RUN npm run build
+
+# Expose the port your application will run on
+EXPOSE 3000
+
+# Command to start your application
+CMD ["npm", "start"]
